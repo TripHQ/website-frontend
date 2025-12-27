@@ -3,7 +3,7 @@ import Button from './Button';
 import './Footer.css';
 import confetti from 'canvas-confetti';
 import WaitlistStatus from './WaitlistStatus';
-const API_BASE = import.meta.env.VITE_API_URL;
+const API_BASE = import.meta.env.VITE_API_BASE || '';
 
 const Footer = () => {
     const [count, setCount] = React.useState(118);
