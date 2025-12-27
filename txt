@@ -1,0 +1,235 @@
+I have this code which I applied to a framer webiste, I wanted this webiste to scroll in a zigzag way, section to section, so for that I had written code, I have 3 tsx file, one for the zigzag motion, one for the reduced motion, this is for accessibility, if someone does not want's to see the zigzag, when they click it, the website will look normal and will scroll vertical, and the third one was for changing the layout when it's tablet and phone, no zigzag motion on both of them. I'll paste the code below, you can learn from that as they works
+
+
+1) ZigZag Motion
+import type { Override } from "framer"
+import { useEffect, useRef } from "react"
+
+function getScrollParent(el: HTMLElement | null) {
+    let node: HTMLElement | null = el
+    while (node) {
+        const style = window.getComputedStyle(node)
+        const oy = style.overflowY
+        if (oy === "auto" || oy === "scroll") return node
+        node = node.parentElement
+    }
+    return document.scrollingElement as HTMLElement
+}
+
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+const smootherstep = (t: number) => t * t * t * (t * (t * 6 - 15) + 10)
+const clamp = (v: number, min: number, max: number) =>
+    Math.max(min, Math.min(max, v))
+
+const STORAGE_KEY = "zz_reduced_motion"
+const DISABLE_BELOW = 1024
+
+// Global helpers you can call from a button override
+export function setReducedMotion(enabled: boolean) {
+    try {
+        localStorage.setItem(STORAGE_KEY, enabled ? "1" : "0")
+    } catch {}
+    document.documentElement.dataset.reducedMotion = enabled ? "true" : "false"
+    window.dispatchEvent(new CustomEvent("zz-reduced-motion-change"))
+}
+
+export function getReducedMotion(): boolean {
+    // 1) user toggle
+    try {
+        const v = localStorage.getItem(STORAGE_KEY)
+        if (v === "1") return true
+        if (v === "0") return false
+    } catch {}
+
+    // 2) system preference default
+    return (
+        window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ??
+        false
+    )
+}
+
+function readReducedMotionFromDatasetOrStorage(): boolean {
+    const ds = document.documentElement.dataset.reducedMotion
+    if (ds === "true") return true
+    if (ds === "false") return false
+    return getReducedMotion()
+}
+
+export function ZigZagScrollSmooth(): Override {
+    const ref = useRef<HTMLElement | null>(null)
+
+    useEffect(() => {
+        const el = ref.current
+        if (!el) return
+
+        document.documentElement.style.overflowX = "hidden"
+        document.body.style.overflowX = "hidden"
+
+        const scroller = getScrollParent(el)
+
+        // Set initial state on html
+        const applyRM = (val: boolean) => {
+            document.documentElement.dataset.reducedMotion = val
+                ? "true"
+                : "false"
+        }
+        if (!document.documentElement.dataset.reducedMotion) {
+            document.documentElement.dataset.reducedMotion = getReducedMotion()
+                ? "true"
+                : "false"
+        }
+
+        let raf = 0
+        const update = () => {
+            const reduced = readReducedMotionFromDatasetOrStorage()
+
+            if (reduced) {
+                document.documentElement.dataset.zigzag = "off"
+                el.style.transform = `translate3d(0px, 0px, 0px)`
+                return
+            }
+
+            const y =
+                scroller === document.scrollingElement
+                    ? window.scrollY
+                    : scroller.scrollTop
+            const vh =
+                scroller === document.scrollingElement
+                    ? window.innerHeight
+                    : scroller.clientHeight
+            const vw = window.innerWidth || 1
+            // Disable zigzag on Tablet + Phone
+            if (vw < DISABLE_BELOW) {
+                document.documentElement.dataset.zigzag = "off"
+                el.style.transform = `translate3d(0px, 0px, 0px)`
+                return
+            } else {
+                document.documentElement.dataset.zigzag = "on"
+            }
+
+            // Content-safe shift: only use the "empty margin" space on large screens
+            const MAX_CONTENT = 1200 // match your container max width vibe
+            const margin = Math.max(0, (vw - MAX_CONTENT) / 2)
+
+            // Keep it visible and subtle
+            const SHIFT = clamp(margin, 0, 420)
+
+            const i = Math.floor(y / vh)
+            const t = (y % vh) / vh
+            const e = smootherstep(t)
+
+            const dirI = i % 2 === 0 ? -1 : 1
+            const dirNext = (i + 1) % 2 === 0 ? -1 : 1
+
+            const x = lerp(dirI * SHIFT, dirNext * SHIFT, e)
+
+            el.style.transform = `translate3d(${x}px, 0px, 0px)`
+        }
+
+        const onScroll = () => {
+            cancelAnimationFrame(raf)
+            raf = requestAnimationFrame(update)
+        }
+
+        const onRMChange = () => onScroll()
+
+        update()
+        scroller.addEventListener("scroll", onScroll, { passive: true })
+        window.addEventListener("resize", onScroll)
+        window.addEventListener("zz-reduced-motion-change", onRMChange)
+
+        return () => {
+            cancelAnimationFrame(raf)
+            scroller.removeEventListener("scroll", onScroll)
+            window.removeEventListener("resize", onScroll)
+            window.removeEventListener("zz-reduced-motion-change", onRMChange)
+        }
+    }, [])
+
+    return { ref, style: { willChange: "transform" } }
+}
+
+
+2) Reduced Motion Button
+import type { Override } from "framer"
+import { useEffect, useState } from "react"
+
+const STORAGE_KEY = "zz_reduced_motion"
+
+function getRM(): boolean {
+    try {
+        const v = localStorage.getItem(STORAGE_KEY)
+        if (v === "1") return true
+        if (v === "0") return false
+    } catch {}
+    return false
+}
+
+function setRM(enabled: boolean) {
+    try {
+        localStorage.setItem(STORAGE_KEY, enabled ? "1" : "0")
+    } catch {}
+    document.documentElement.dataset.reducedMotion = enabled ? "true" : "false"
+    window.dispatchEvent(new CustomEvent("zz-reduced-motion-change"))
+}
+
+export function ReducedMotionToggle(): Override {
+    const [on, setOn] = useState(false)
+
+    useEffect(() => {
+        const initial = getRM()
+        setOn(initial)
+        document.documentElement.dataset.reducedMotion = initial
+            ? "true"
+            : "false"
+
+        const handler = () => setOn(getRM())
+        window.addEventListener("zz-reduced-motion-change", handler)
+        return () =>
+            window.removeEventListener("zz-reduced-motion-change", handler)
+    }, [])
+
+    return {
+        text: on ? "Motion: Off" : "Motion: On",
+        onTap() {
+            setRM(!on)
+            setOn(!on)
+        },
+    }
+}
+
+
+3) Variant By Reduced Motion
+import type { Override } from "framer"
+import { useEffect, useState } from "react"
+
+export function VariantByReducedMotion(): Override {
+    const computeOff = () => {
+        const zigzagOff = document.documentElement.dataset.zigzag === "off"
+        const reducedMotion =
+            document.documentElement.dataset.reducedMotion === "true"
+        return zigzagOff || reducedMotion
+    }
+
+    const [off, setOff] = useState(false)
+
+    useEffect(() => {
+        const handler = () => setOff(computeOff())
+
+        handler() // set initial state
+
+        window.addEventListener("zz-reduced-motion-change", handler)
+        window.addEventListener("resize", handler)
+
+        return () => {
+            window.removeEventListener("zz-reduced-motion-change", handler)
+            window.removeEventListener("resize", handler)
+        }
+    }, [])
+
+    return { variant: off ? "MotionOff" : "MotionOn" }
+}
+
+
+
+Try to use them or use your own knowledge, make sure the zigzag motion works on laptop and desktop easily 

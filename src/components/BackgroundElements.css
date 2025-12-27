@@ -1,0 +1,78 @@
+.bg-elements-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    /* Behind content if content has z-index > 0 */
+    overflow: hidden;
+}
+
+.bg-asset {
+    position: absolute;
+    opacity: 0.6;
+    /* Increased opacity */
+    mix-blend-mode: multiply;
+    filter: contrast(1.1) brightness(1.1);
+    /* Blow out off-whites to pure white */
+}
+
+/* Compass - Hero Section (Bottom Right - Overlapping Fold) */
+.bg-compass {
+    top: 85vh;
+    /* Moves it to the bottom of the viewport/Hero */
+    right: -100px;
+    /* Slightly more out of screen */
+    width: 400px;
+    /* Slightly larger for impact at the fold */
+    transform: rotate(15deg);
+}
+
+/* Ticket - Problem Section (Middle Left) */
+.bg-ticket {
+    top: 35%;
+    left: -20px;
+    width: 350px;
+    transform: rotate(-10deg);
+}
+
+/* Plane - Solutions Section (Lower Right) */
+.bg-plane {
+    top: 65%;
+    right: 5%;
+    width: 250px;
+    transform: rotate(-20deg);
+}
+
+/* Stamp - Moved from Footer to Upper Left (Hero/Problem transition) */
+.bg-stamp {
+    top: 20%;
+    left: 5%;
+    bottom: auto;
+    width: 180px;
+    transform: rotate(15deg);
+    opacity: 0.4;
+    /* Slightly subtler */
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .bg-compass {
+        width: 150px;
+        top: 5%;
+        right: -20px;
+    }
+
+    .bg-ticket {
+        width: 200px;
+        top: 40%;
+        left: -50px;
+    }
+
+    .bg-stamp {
+        width: 150px;
+        bottom: 5%;
+    }
+}

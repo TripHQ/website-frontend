@@ -1,0 +1,23 @@
+import React from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import ProblemSection from './components/ProblemSection';
+import BackgroundElements from './components/BackgroundElements';
+
+import Solutions from './components/Solutions';
+import Footer from './components/Footer';
+
+function App() {
+  return (
+    <div className="app">
+      <BackgroundElements />
+      <Header />
+      <Hero />
+      <ProblemSection />
+      <Solutions />
+      <Footer />
+    </div>
+  );
+}
+
+export default App;

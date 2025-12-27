@@ -1,0 +1,110 @@
+DEPLOYMENT CHECKLIST
+====================
+
+This file outlines every specific change required to move the Tripazia Landing Page from a local development environment to a cloud hosting provider (e.g., Vercel, Heroku, AWS, Railway).
+
+1. BACKEND API & SERVER (`server/index.js`)
+-------------------------------------------
+Current State:
+- Port is hardcoded to 3001.
+- CORS is open to all domains.
+
+Changes Required:
+[ ] Update Port Binding:
+    File: server/index.js (Line 7)
+    Change: `const PORT = 3001;`
+    To:     `const PORT = process.env.PORT || 3001;`
+    Why:    Cloud providers inject their own port via the PORT environment variable.
+
+[ ] Restrict CORS (Security):
+    File: server/index.js (Line 9)
+    Change: `app.use(cors());`
+    To:
+      ```javascript
+      const allowedOrigins = [process.env.FRONTEND_URL || 'http://localhost:5173'];
+      app.use(cors({
+        origin: allowedOrigins
+      }));
+      ```
+    Why:    Prevents unauthorized websites from calling your API.
+
+[ ] Serve Static Files (Optional but recommended for single-server deploy):
+    If you want the Node server to also serve the React app:
+    Add: `app.use(express.static(path.join(__dirname, '../dist')));`
+
+2. TICKET GENERATION & FILESYSTEM (`server/ticket-service.js`)
+--------------------------------------------------------------
+Current State:
+- Generates tickets and saves them to local disk: `public/generated`.
+- Returns a relative URL: `/generated/ticket-xyz.png`.
+
+CRITCAL ISSUE:
+- Most cloud platforms (Vercel, Heroku, AWS Lambda) have "ephemeral filesystems."
+- Files written to disk are DELETED every time the app restarts or redeploys.
+- The `public/generated` folder will not persist.
+
+Changes Required:
+[ ] Option A: Cloud Storage (Robust)
+    - Integrate AWS S3 or Cloudinary.
+    - Update `generateTicket` to upload the buffer instead of `fs.writeFileSync`.
+    - Return the public URL from S3/Cloudinary.
+
+[ ] Option B: Base64 Data API (Simpler)
+    - Instead of saving to disk, return the image directly as a base64 string.
+    - Change return to: `return "data:image/png;base64," + pngBuffer.toString('base64');`
+    - Update Frontend to handle the data URI.
+
+[ ] Font Loading:
+    - Ensure `@fontsource` packages are included in `package.json`.
+    - Verify `node_modules` are installed on the server during build.
+
+3. DATABASE (`server/db.js`)
+----------------------------
+Current State:
+- Uses `better-sqlite3` with a local file `tripazia.db`.
+
+CRITICAL ISSUE:
+- Like the ticket images, this database file will be WIPED on every deployment in serverless/ephemeral environments.
+
+Changes Required:
+[ ] Switch to a Cloud Database:
+    - Provision a PostgreSQL or MySQL database (e.g., Supabase, Neon, Railway, AWS RDS).
+    - Replace `better-sqlite3` with `pg` (Postgres) or `mysql2`.
+    - Refactor `server/db.js` to connect using a connection string:
+      `const db = new Client({ connectionString: process.env.DATABASE_URL });`
+
+4. FRONTEND CONFIGURATION (`vite.config.js` & `src/api.js`)
+-----------------------------------------------------------
+Current State:
+- `vite.config.js` has a hardcoded proxy: `target: 'http://localhost:3001'`.
+- `Footer.jsx` fetches relative path: `fetch('/api/join', ...)`
+
+Changes Required:
+[ ] Environment Variables:
+    - Create `.env.production`.
+    - Add: `VITE_API_URL=https://your-backend-app.com`
+
+[ ] Update API Calls:
+    - If hosting Frontend (Vercel) separate from Backend (Render/Heroku):
+      Current logic `fetch('/api/join')` will fail because it tries to fetch from the frontend domain.
+      Update to: `fetch('${import.meta.env.VITE_API_URL}/api/join')`.
+
+5. BUILD & START SCRIPTS (`package.json`)
+-----------------------------------------
+Current State:
+- `dev`: runs vite
+- `server`: runs node server/index.js
+
+Changes Required:
+[ ] Add a "build" script for the backend if needed (usually just `node server/index.js` is fine).
+[ ] Ensure a `start` script exists that runs the production server:
+    `"start": "node server/index.js"`
+
+6. ENVIRONMENT VARIABLES (To be set in Cloud Dashboard)
+-----------------------------------------------------
+You must add these in your hosting provider's settings (e.g., Vercel Project Settings > Environment Variables):
+
+- `PORT` (usually set automatically by provider)
+- `DATABASE_URL` (Connection string for your cloud DB)
+- `FRONTEND_URL` (URL of your deployed React app)
+- `NODE_ENV` = production

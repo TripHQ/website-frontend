@@ -1,0 +1,67 @@
+/* Solutions.css */
+.solution-section {
+    padding: var(--spacing-section) 0;
+    overflow: visible;
+}
+
+.feature-block {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 8rem;
+    position: relative;
+    /* Ensure stacking context if needed */
+}
+
+.feature-block.reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-content {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    /* User requested text above image */
+}
+
+.feature-title {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.feature-desc {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 400px;
+}
+
+.feature-visual {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    /* Image below text */
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .feature-block {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 5rem;
+        text-align: center;
+    }
+
+    .feature-block.reverse {
+        flex-direction: column;
+    }
+
+    .feature-desc {
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,33 @@
+:root {
+  /* Colors */
+  /* Colors */
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --text-secondary: #52525b;
+  /* Zinc-600 */
+  --primary-color: #E64568;
+  /* Red/Pinkish for buttons */
+  --accent-gradient: linear-gradient(90deg, #ff4d4d, #f9cb28);
+  /* For the "trip" text */
+  --card-bg: rgba(0, 0, 0, 0.05);
+  --border-color: rgba(0, 0, 0, 0.1);
+
+  /* Typography */
+  --font-family-base: 'Outfit', sans-serif;
+  --font-size-hero: 4rem;
+  --font-size-h1: 3rem;
+  --font-size-h2: 2.5rem;
+  --font-size-body: 1.125rem;
+
+  /* Spacing */
+  --spacing-container: 1200px;
+  --spacing-section: 120px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero: 2.5rem;
+    --font-size-h1: 2rem;
+    --spacing-section: 80px;
+  }
+}
