@@ -19,16 +19,7 @@
     /* Blow out off-whites to pure white */
 }
 
-/* Compass - Hero Section (Bottom Right - Overlapping Fold) */
-.bg-compass {
-    top: 85vh;
-    /* Moves it to the bottom of the viewport/Hero */
-    right: -100px;
-    /* Slightly more out of screen */
-    width: 400px;
-    /* Slightly larger for impact at the fold */
-    transform: rotate(15deg);
-}
+
 
 /* Ticket - Problem Section (Middle Left) */
 .bg-ticket {
@@ -36,14 +27,6 @@
     left: -20px;
     width: 350px;
     transform: rotate(-10deg);
-}
-
-/* Plane - Solutions Section (Lower Right) */
-.bg-plane {
-    top: 65%;
-    right: 5%;
-    width: 250px;
-    transform: rotate(-20deg);
 }
 
 /* Stamp - Moved from Footer to Upper Left (Hero/Problem transition) */
@@ -59,11 +42,7 @@
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-    .bg-compass {
-        width: 150px;
-        top: 5%;
-        right: -20px;
-    }
+
 
     .bg-ticket {
         width: 200px;

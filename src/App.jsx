@@ -7,9 +7,12 @@ import BackgroundElements from './components/BackgroundElements';
 import Solutions from './components/Solutions';
 import Footer from './components/Footer';
 
+import CustomCursor from './components/CustomCursor';
+
 function App() {
   return (
     <div className="app">
+      <CustomCursor />
       <BackgroundElements />
       <Header />
       <Hero />

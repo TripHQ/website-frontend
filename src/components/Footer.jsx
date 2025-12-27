@@ -154,9 +154,10 @@ const Footer = () => {
                 <WaitlistStatus count={count} joiners={joiners} />
 
                 <div className="footer-links">
-                    <a href="#twitter">Twitter / X</a>
-                    <a href="#insta">Instagram</a>
-                    <a href="#linkedin">LinkedIn</a>
+                    <a href="#twitter" className="link-twitter">Twitter / X</a>
+                    <a href="#insta" className="link-insta">Instagram</a>
+                    <a href="#linkedin" className="link-linkedin">LinkedIn</a>
+                    <a href="#tiktok" className="link-tiktok">TikTok</a>
                 </div>
             </div>
 

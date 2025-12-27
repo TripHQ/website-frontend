@@ -48,6 +48,79 @@
     justify-content: center;
 }
 
+/* One App Section */
+.one-app-section {
+    margin-top: 1rem;
+    margin-bottom: 8rem;
+}
+
+.one-app-header {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    position: relative;
+    /* Context for absolute positioning of plane */
+}
+
+.one-app-plane {
+    position: absolute;
+    right: -750px;
+    top: -200px;
+    width: 250px;
+    transform: rotate(-10deg);
+    z-index: 0;
+    /* Ensures it is behind if needed, but side-by-side relies on layout */
+    mix-blend-mode: multiply;
+    filter: contrast(1.1) brightness(1.1);
+}
+
+.one-app-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.one-app-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.one-app-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.one-app-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.one-app-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.one-app-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+    /* Remove bottom margin to reduce gap */
+    max-width: 90%;
+}
+
+.one-app-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .feature-block {
@@ -63,5 +136,14 @@
 
     .feature-desc {
         margin: 0 auto;
+    }
+
+    .one-app-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .one-app-header {
+        text-align: left;
     }
 }

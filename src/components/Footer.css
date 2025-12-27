@@ -211,3 +211,45 @@ select.form-input {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     /* IG Gradient */
 }
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.footer-links a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.footer-links a:hover {
+    transform: translateY(-2px);
+}
+
+/* Brand Hover Colors */
+.link-twitter:hover {
+    color: #000000;
+}
+
+.link-linkedin:hover {
+    color: #0077b5;
+}
+
+.link-tiktok:hover {
+    color: #FE2C55;
+}
+
+.link-insta:hover {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* Fallback */
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Header.css';
+import logoBrand from '../assets/logo_brand.png';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,7 +12,9 @@ const Header = () => {
     return (
         <header className="header">
             <div className="container header-content">
-                <div className="logo">Tripazia</div>
+                <div className="logo">
+                    <img src={logoBrand} alt="Tripazia" className="header-logo" />
+                </div>
 
                 <button
                     className={`hamburger ${isMenuOpen ? 'active' : ''}`}

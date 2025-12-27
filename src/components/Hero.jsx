@@ -7,7 +7,9 @@ import imgNYC from '../assets/hero/hero_polaroid_nyc.png';
 import imgSF from '../assets/hero/hero_polaroid_sf.png';
 import imgMiami from '../assets/hero/hero_polaroid_miami.png';
 import imgCamera from '../assets/hero/hero_3d_camera.png';
+
 import imgSuitcase from '../assets/hero/hero_3d_suitcase.png';
+import imgCompass from '../assets/travel_compass.png';
 
 import WaitlistStatus from './WaitlistStatus';
 
@@ -55,6 +57,9 @@ const Hero = () => {
                 <div className="hero-waitlist fade-in delay-3" style={{ marginTop: '2rem' }}>
                     <WaitlistStatus count={count} joiners={joiners} />
                 </div>
+
+                {/* Decorative Compass */}
+                <img src={imgCompass} alt="" className="hero-compass" />
             </div>
         </section>
     );
