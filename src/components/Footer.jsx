@@ -3,6 +3,7 @@ import Button from './Button';
 import './Footer.css';
 import confetti from 'canvas-confetti';
 import WaitlistStatus from './WaitlistStatus';
+const API_BASE = import.meta.env.VITE_API_URL;
 
 const Footer = () => {
     const [count, setCount] = React.useState(118);
@@ -29,7 +30,7 @@ const Footer = () => {
         setLoading(true);
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/join`, {
+            const response = await fetch(`${API_BASE}/api/join`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, country, destination }),
