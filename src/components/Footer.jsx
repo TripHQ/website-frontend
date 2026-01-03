@@ -84,8 +84,8 @@ const Footer = () => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'My Tripazia Ticket',
-                    text: `I'm going to ${destination || 'my dream destination'}! Join me on Tripazia.`,
+                    title: 'My Waynix Ticket',
+                    text: `I'm going to ${destination || 'my dream destination'}! Join me on Waynix.`,
                     url: fullUrl
                 });
             } catch (err) {

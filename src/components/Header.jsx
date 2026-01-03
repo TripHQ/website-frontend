@@ -32,7 +32,7 @@ const Header = () => {
         <header className="header">
             <div className="container header-content">
                 <div className="logo">
-                    <img src={logoBrand} alt="Tripazia" className="header-logo" />
+                    <img src={logoBrand} alt="Waynix" className="header-logo" />
                 </div>
 
                 <button
