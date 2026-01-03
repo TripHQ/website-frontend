@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ProblemSection from './components/ProblemSection';
+import TransitionSection from './components/TransitionSection';
 import BackgroundElements from './components/BackgroundElements';
 
 import Solutions from './components/Solutions';
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <Hero />
       <ProblemSection />
+      <TransitionSection />
       <Solutions />
       <Footer />
     </div>

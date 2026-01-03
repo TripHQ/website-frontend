@@ -1,0 +1,56 @@
+.transition-section {
+    padding: 0;
+    text-align: center;
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.transition-title {
+    font-size: var(--font-size-hero);
+    line-height: 1.1;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: #111;
+}
+
+.transition-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Replicate the highlight style from Hero */
+.transition-title .highlight-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--primary-color);
+    font-weight: 400;
+}
+
+.waynix-icon {
+    height: 50px;
+    width: 50px;
+    /* Square */
+    object-fit: cover;
+    border: 2px solid white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-left: 15px;
+    vertical-align: middle;
+    transform: rotate(10deg);
+    display: inline-block;
+    background: white;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .transition-section {
+        padding: 4rem 0;
+    }
+}

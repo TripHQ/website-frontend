@@ -18,6 +18,9 @@ const BackgroundElements = () => {
 
             {/* Bottom Right - Stamp near Footer */}
             <img src={imgStamp} alt="" className="bg-asset bg-stamp" />
+
+            {/* Paper Plane - Solutions Section */}
+            <img src={imgPlane} alt="" className="bg-asset bg-plane" />
         </div>
     );
 };

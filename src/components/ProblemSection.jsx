@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ProblemSection.css';
+import imgProblem from '../assets/Problem Section.png';
 
 const problems = [
     {
@@ -69,12 +70,11 @@ const ProblemSection = () => {
 
                 <div className="problem-grid">
                     <div className="problem-visual">
-                        {/* Visual changes based on active step if needed, for now keeping static placeholder or we can animate it later */}
-                        <div className="messy-lines"></div>
-                        <div className="visual-content">
-                            {/* You could render a different image per step here if desired */}
-                            <div style={{ color: '#fff', opacity: 0.5 }}>[ Visual for Step {activeStep + 1} ]</div>
-                        </div>
+                        <img
+                            src={imgProblem}
+                            alt="Visual representation of travel planning problems"
+                            className="problem-image"
+                        />
                     </div>
 
                     <div className="problem-points">

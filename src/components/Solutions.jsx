@@ -1,15 +1,28 @@
 import React from 'react';
 import './Solutions.css';
-import imgPlane from '../assets/travel_paper_plane.png';
+import videoPreferences from '../assets/Main Asset_preferences.mp4';
+import videoAiAssistant from '../assets/Main_AI Assistant.mp4';
+import videoSeeAll from '../assets/Main_See AII.mp4';
 
-const FeatureBlock = ({ title, description, reverse, visualText }) => (
+const FeatureBlock = ({ title, description, reverse, visualText, videoSrc }) => (
     <div className={`feature-block ${reverse ? 'reverse' : ''} fade-in`}>
         <div className="feature-content">
             <h3 className="feature-title">{title}</h3>
             <p className="feature-desc">{description}</p>
         </div>
         <div className="feature-visual">
-            <div style={{ color: '#555' }}>[ {visualText || 'Visual Placeholder'} ]</div>
+            {videoSrc ? (
+                <video
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="feature-video"
+                />
+            ) : (
+                <div style={{ color: '#555' }}>[ {visualText || 'Visual Placeholder'} ]</div>
+            )}
         </div>
     </div>
 );
@@ -22,59 +35,34 @@ const Solutions = () => {
                 <FeatureBlock
                     title="From Your Preferences to a Perfect Itinerary."
                     description="Tell us your preferences, play with combinations, and watch your city come to life."
-                    visualText="Preferences UI"
+                    videoSrc={videoPreferences}
                 />
 
                 <FeatureBlock
-                    title="Shape your days, your way"
-                    description="Drag, drop or swap activities anytime, without losing your plan."
+                    title="Your Personal Travel Concierge"
+                    description="Need a quick suggestion or want to tweak your plans? Just ask your built-in travel AI Assistant and get instant help right inside the app."
                     reverse={true}
-                    visualText="Drag & Drop Interface"
+                    videoSrc={videoAiAssistant}
                 />
 
                 <FeatureBlock
                     title="See it all come together"
                     description="One map, one plan, everything synced."
-                    visualText="Map Itinerary View"
+                    videoSrc={videoSeeAll}
                 />
 
                 <div className="one-app-section fade-in">
-                    <div className="one-app-header">
-                        <h2 className="one-app-title">One App, Endless Possibilities: Your Trip, Your Way</h2>
-                        <img src={imgPlane} alt="" className="one-app-plane" />
-                        <p className="one-app-subtitle">Your itinerary, your map, and your personal travel assistant, all in one place.</p>
-                    </div>
 
                     <div className="one-app-grid">
                         <div className="one-app-card">
-                            <h3>A flexible itinerary</h3>
-                            <p>See your entire trip laid out day by day. Make changes anytime, your plan updates instantly.</p>
-                            <div className="one-app-placeholder"></div>
-                        </div>
-                        <div className="one-app-card">
-                            <h3>A map that keeps up</h3>
-                            <p>Your routes, organized and visual. As your plans change, your map adjusts with you.</p>
-                            <div className="one-app-placeholder"></div>
-                        </div>
-                    </div>
-                </div>
+                            <h3>Plan Together, Without the Chaos</h3>
+                            <p>Coming Soon: Plan trips with friends and family in one shared space. Chat with the assistant as a group, update plans together, and split expenses, without juggling messages, notes, and payment apps.</p>
 
-                <div className="one-app-section fade-in">
-                    <div className="one-app-header">
-                        <h2 className="one-app-title">Soon, planning won't be a solo thing</h2>
-                        <p className="one-app-subtitle">Tripazia is just getting started. We're building towards a more collaborative and rewarding way to plan trips, together.</p>
-                    </div>
-
-                    <div className="one-app-grid">
-                        <div className="one-app-card">
-                            <h3>Plan trips with friends</h3>
-                            <p>Invite friends, create groups, and plan together, no more scattered chats or mismatched plans.</p>
-                            <div className="one-app-placeholder"></div>
                         </div>
                         <div className="one-app-card">
-                            <h3>Earn from trips you build</h3>
-                            <p>Create great itineraries. If others use them, you earn. Turn your travel planning into something more.</p>
-                            <div className="one-app-placeholder"></div>
+                            <h3>Local Experiences, Built Into Your Trip</h3>
+                            <p>Coming soon: Discover workshops, classes, and experiences hosted by local businesses, right inside your itinerary. Book instantly, pay upfront, and turn your trip into something truly local.</p>
+
                         </div>
                     </div>
                 </div>

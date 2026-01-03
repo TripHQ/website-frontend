@@ -16,6 +16,13 @@
     line-height: 1.1;
 }
 
+.highlight-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--primary-color);
+    font-weight: 400;
+}
+
 .footer-desc {
     font-size: 1.125rem;
     color: var(--text-secondary);
@@ -233,6 +240,10 @@ select.form-input {
 }
 
 /* Brand Hover Colors */
+.link-email:hover {
+    color: var(--primary-color);
+}
+
 .link-twitter:hover {
     color: #000000;
 }

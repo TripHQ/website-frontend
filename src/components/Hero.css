@@ -152,13 +152,23 @@
 .watch-demo {
     color: var(--primary-color);
     font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    transition: opacity 0.2s;
+    text-decoration: none;
+    border: 1px solid var(--primary-color);
+    padding: 8px 24px;
+    /* Reduced by 1px to match .btn height (which has 12px pad + 0 border) */
+    font-size: 1rem;
+    display: inline-block;
+    border-radius: 9999px;
+    /* Pill shape matching main button */
+    transition: all 0.2s ease;
+    background: transparent;
 }
 
 .watch-demo:hover {
-    opacity: 0.8;
+    background-color: #fff0f4;
+    transform: translateY(-2px);
+    opacity: 1;
+    /* Override previous opacity change */
 }
 
 /* Compass - Lower Right of Hero */

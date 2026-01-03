@@ -30,10 +30,40 @@
     /* Removes white background */
 }
 
+/* Desktop Layout Adjustment */
+.header-content {
+    position: relative;
+    /* Context for absolute centering */
+}
+
+.nav-menu {
+    display: flex;
+    /* Allow multiple ULs */
+    flex-grow: 1;
+    justify-content: flex-end;
+    /* Buttons go right by default */
+    align-items: center;
+}
+
 .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 20px;
     list-style: none;
+    align-items: center;
+}
+
+/* Specific positioning for groups */
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Ensure text links are centered relative to the whole header */
+}
+
+/* Nav right stays in normal flow, aligned to end by parent */
+.nav-right {
+    margin-left: auto;
+    /* Just in case */
 }
 
 .nav-links a {
@@ -47,6 +77,31 @@
 
 .nav-links a:hover {
     opacity: 1;
+    color: var(--primary-color);
+}
+
+/* Secondary Button Style for Header */
+.btn-header-secondary {
+    color: var(--primary-color) !important;
+    /* Force override legacy nav color */
+    font-weight: 600 !important;
+    text-decoration: none;
+    border: 1px solid var(--primary-color);
+    padding: 8px 24px !important;
+    /* Matches Hero button height */
+    font-size: 1rem !important;
+    display: inline-block;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+    background: transparent;
+    opacity: 1 !important;
+    /* Override nav opacity */
+}
+
+.btn-header-secondary:hover {
+    background-color: #fff0f4;
+    transform: translateY(-2px);
+    opacity: 1 !important;
 }
 
 /* Base styles for the "Updates" badge if needed, kept simple for now based on wireframe */
@@ -110,6 +165,18 @@
         padding: 0;
     }
 
+    /* Reset desktop positioning */
+    .nav-center {
+        position: static;
+        transform: none;
+        margin-bottom: 20px;
+        /* Space between groups */
+    }
+
+    .nav-right {
+        margin-left: 0;
+    }
+
     .nav-links li {
         width: 100%;
         text-align: center;
@@ -119,6 +186,14 @@
         font-size: 1.5rem;
         display: block;
         padding: 10px;
+    }
+
+    /* Fix for secondary button stretching on mobile */
+    .nav-links a.btn-header-secondary {
+        display: inline-block;
+        width: auto;
+        font-size: 1rem;
+        /* keep button font size normal */
     }
 
     /* Hamburger Animation */
@@ -132,5 +207,34 @@
 
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+/* Scroll Animation for Navbar Buttons */
+.nav-btn-item {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    /* Prevent clicking when hidden */
+    transition: all 0.4s ease;
+}
+
+.nav-btn-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Delay the second button slightly for a staggered effect */
+.nav-btn-item:nth-child(4) {
+    transition-delay: 0.1s;
+}
+
+/* On mobile, usually we want them always visible inside the opened menu */
+@media (max-width: 1024px) {
+    .nav-btn-item {
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
     }
 }

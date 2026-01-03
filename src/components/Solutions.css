@@ -1,8 +1,13 @@
 /* Solutions.css */
 .solution-section {
     padding: var(--spacing-section) 0;
-    overflow: visible;
+    overflow: hidden;
+    /* Changed to hidden to prevent scrollbar if plane goes off-screen, or keep visible if intended */
+    position: relative;
+    overflow-x: clip;
+    /* Modern way to prevent horizontal scroll but allow vertical overflow if needed */
 }
+
 
 .feature-block {
     display: flex;
@@ -61,17 +66,7 @@
     /* Context for absolute positioning of plane */
 }
 
-.one-app-plane {
-    position: absolute;
-    right: -750px;
-    top: -200px;
-    width: 250px;
-    transform: rotate(-10deg);
-    z-index: 0;
-    /* Ensures it is behind if needed, but side-by-side relies on layout */
-    mix-blend-mode: multiply;
-    filter: contrast(1.1) brightness(1.1);
-}
+
 
 .one-app-title {
     font-size: 2.5rem;
@@ -106,7 +101,7 @@
 }
 
 .one-app-card p {
-    font-size: 1rem;
+    font-size: 20px;
     line-height: 1.5;
     color: var(--text-secondary);
     margin-bottom: 0;
@@ -114,12 +109,7 @@
     max-width: 90%;
 }
 
-.one-app-placeholder {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background-color: #e0e0e0;
-    border-radius: 12px;
-}
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -146,4 +136,21 @@
     .one-app-header {
         text-align: left;
     }
+
+
+}
+
+.feature-video {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    /* border-radius: 20px; - Radius might be less needed with heavy fade, but keeping it is safe */
+    border-radius: 50%;
+    display: block;
+
+
+    /* Eclipse/Radial fade */
+    -webkit-mask-image: radial-gradient(rgb(255, 232, 232) 40%, transparent 70%);
+    mask-image: radial-gradient(rgb(255, 232, 232) 40%, transparent 70%);
+    /* Removed mask-composite as we are using a single radial gradient */
 }

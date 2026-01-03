@@ -100,9 +100,9 @@ const Footer = () => {
     return (
         <footer className="footer" id="join">
             <div className="container footer-content fade-in">
-                <h2>Join early. Help shape what comes next.</h2>
+                <h2>Your journey with <span className="highlight-text">Waynix</span> starts here.</h2>
                 <p className="footer-desc">
-                    Because your preferences are key. Unlock secret founders lists, plan trips, and fun hidden gems along the way.
+                    Join as a Founding Traveler and get early access to smarter, simpler trip planning.
                 </p>
 
                 <form className="subscribe-form" onSubmit={handleSubmit}>
@@ -147,13 +147,17 @@ const Footer = () => {
                         />
                     </div>
                     <Button type="submit" disabled={loading}>
-                        {loading ? 'Generating Ticket...' : 'Get Early Access'}
+                        {loading ? 'Generating Ticket...' : 'Become a Founding Traveler*'}
                     </Button>
+                    <p style={{ marginTop: '0.2rem', fontSize: '0.8rem', color: '#888', fontStyle: 'italic' }}>
+                        *Founding travelers get full access to Waynix during the early access.
+                    </p>
                 </form>
 
                 <WaitlistStatus count={count} joiners={joiners} />
 
                 <div className="footer-links">
+                    <a href="mailto:team.waynix@gmail.com" className="link-email">Email</a>
                     <a href="#twitter" className="link-twitter">Twitter / X</a>
                     <a href="#insta" className="link-insta">Instagram</a>
                     <a href="#linkedin" className="link-linkedin">LinkedIn</a>

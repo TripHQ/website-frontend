@@ -19,39 +19,74 @@
     /* Blow out off-whites to pure white */
 }
 
-
-
 /* Ticket - Problem Section (Middle Left) */
 .bg-ticket {
-    top: 35%;
-    left: -20px;
+    top: 40%;
+    left: -120px;
+    /* Pull further left out of content */
     width: 350px;
     transform: rotate(-10deg);
 }
 
 /* Stamp - Moved from Footer to Upper Left (Hero/Problem transition) */
 .bg-stamp {
-    top: 20%;
-    left: 5%;
+    top: 15%;
+    left: -50px;
+    /* Pull further left */
     bottom: auto;
     width: 180px;
     transform: rotate(15deg);
-    opacity: 0.4;
-    /* Slightly subtler */
+    opacity: 0.3;
+    /* Subtle */
+}
+
+/* Paper Plane - Solutions Section (Right) */
+.bg-plane {
+    position: absolute;
+    right: 0;
+    top: 58%;
+    /* Adjusted to be further up to avoid overlap */
+    width: 18vw;
+    /* Smaller as requested */
+    max-width: 280px;
+    min-width: 120px;
+    transform: rotate(-10deg);
+    z-index: -1;
+    mix-blend-mode: multiply;
+    filter: contrast(1.1) brightness(1.1);
+    opacity: 0.8;
+    /* Slightly more visible since it's smaller */
+    pointer-events: none;
 }
 
 /* Mobile Adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 
-
+    /* On smaller screens/tablets where white space is scarce, 
+       it's safer to hide them or make them very subtle background textures */
     .bg-ticket {
-        width: 200px;
-        top: 40%;
-        left: -50px;
+        left: -150px;
+        /* Keep it really on the edge */
+        width: 250px;
+        opacity: 0.2;
     }
 
     .bg-stamp {
+        left: -80px;
         width: 150px;
-        bottom: 5%;
+        opacity: 0.2;
+    }
+
+    .bg-plane {
+        top: 50%;
+        opacity: 0.4;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Hide on mobile to guarantee no readability issues */
+    .bg-elements-container {
+        display: none;
     }
 }

@@ -47,11 +47,11 @@ const Hero = () => {
                     as the trip itself.
                 </h1>
                 <p className="hero-subtitle fade-in delay-1">
-                    Waynix turns the hassle of planning a trip into a smooth, all-in-on experience, so you can enjoy the journey from the very start.
+                    Waynix brings your entire trip into one place, real recommendations, a clear itinerary, and a map that updates as you plan.
                 </p>
                 <div className="hero-actions fade-in delay-2">
-                    <Button onClick={() => document.getElementById('join').scrollIntoView({ behavior: 'smooth' })}>Become a founding member</Button>
-                    <a href="#video" className="watch-demo">Get a Free Demo</a>
+                    <Button onClick={() => document.getElementById('join').scrollIntoView({ behavior: 'smooth' })}>Become a Founding Traveler*</Button>
+                    <a href="https://calendly.com/team-waynix/30min" target="_blank" rel="noopener noreferrer" className="watch-demo">Get a Free Demo</a>
                 </div>
 
                 <div className="hero-waitlist fade-in delay-3" style={{ marginTop: '2rem' }}>

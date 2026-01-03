@@ -41,25 +41,37 @@
 
 /* Visual Side (Left) */
 .problem-visual {
-    background: #e5e5e5;
-    /* Light grey placeholder like in screenshot */
+    /* Background removed to display the image cleanly */
+    background: none;
     border: none;
-    border-radius: 24px;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 32px;
+    /* Removed fixed height so container wraps image tightly */
+    display: block;
     position: relative;
-    /* Optional: striped pattern to match screenshot roughly if needed */
-    background-image: repeating-linear-gradient(-45deg,
-            #e5e5e5,
-            #e5e5e5 10px,
-            #f5f5f5 10px,
-            #f5f5f5 20px);
+    overflow: hidden;
+    /* Ensure image stays within radius */
+}
+
+/* Fading effect overlay */
+.problem-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 40px 10px #ffffff;
+    pointer-events: none;
+    border-radius: 32px;
+}
+
+/* New style for the imported image */
+.problem-image {
+    width: 100%;
+    height: auto;
+    /* Allow height to adjust based on width */
+    object-fit: cover;
+    display: block;
 }
 
 .messy-lines {
-    /* Keeping this conceptual, but hiding it if we use the striped bg */
     display: none;
 }
 
