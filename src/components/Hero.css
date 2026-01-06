@@ -222,4 +222,18 @@
     .group-2 .img-3 {
         left: 36px;
     }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .hero-actions button,
+    .hero-actions .watch-demo {
+        width: 100%;
+        text-align: center;
+    }
 }

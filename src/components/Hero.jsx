@@ -3,12 +3,6 @@ import Button from './Button';
 import './Hero.css';
 
 // Import images
-import imgNYC from '../assets/hero/hero_polaroid_nyc.png';
-import imgSF from '../assets/hero/hero_polaroid_sf.png';
-import imgMiami from '../assets/hero/hero_polaroid_miami.png';
-import imgCamera from '../assets/hero/hero_3d_camera.png';
-
-import imgSuitcase from '../assets/hero/hero_3d_suitcase.png';
 import imgCompass from '../assets/travel_compass.png';
 
 import WaitlistStatus from './WaitlistStatus';
@@ -27,27 +21,14 @@ const Hero = () => {
     ];
 
     return (
-        <section className="hero">
+        <section className="hero" id="home">
             <div className="container t-center">
                 <h1 className="hero-title fade-in">
-                    Make <span className="highlight-text">planning</span>
-                    <span className="hero-images-group group-1">
-                        <img src={imgSuitcase} alt="Suitcase" className="hero-img img-single-3d" />
-                    </span>
-                    your <span className="highlight-text">trip</span>
-                    <span className="hero-images-group group-2">
-                        <img src={imgNYC} alt="NYC" className="hero-img img-1" />
-                        <img src={imgSF} alt="San Francisco" className="hero-img img-2" />
-                        <img src={imgMiami} alt="Miami" className="hero-img img-3" />
-                    </span>
-                    as <span className="highlight-text">fun</span>
-                    <span className="hero-images-group group-3">
-                        <img src={imgCamera} alt="Instant Camera" className="hero-img img-single-3d" />
-                    </span>
-                    as the trip itself.
+                    Trip planning is broken.<br />
+                    <span className="highlight-text">Waynix</span> fixes it.
                 </h1>
                 <p className="hero-subtitle fade-in delay-1">
-                    Waynix brings your entire trip into one place, real recommendations, a clear itinerary, and a map that updates as you plan.
+                    Stop bouncing between apps. Save, search, and filter ideas by your preferences, then turn them into a plan.
                 </p>
                 <div className="hero-actions fade-in delay-2">
                     <Button onClick={() => document.getElementById('join').scrollIntoView({ behavior: 'smooth' })}>Become a Founding Traveler*</Button>

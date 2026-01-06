@@ -29,7 +29,7 @@ const FeatureBlock = ({ title, description, reverse, visualText, videoSrc }) => 
 
 const Solutions = () => {
     return (
-        <section className="solution-section">
+        <section className="solution-section" id="solutions">
             <div className="container">
 
                 <FeatureBlock

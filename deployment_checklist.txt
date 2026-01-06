@@ -1,7 +1,7 @@
 DEPLOYMENT CHECKLIST
 ====================
 
-This file outlines every specific change required to move the Tripazia Landing Page from a local development environment to a cloud hosting provider (e.g., Vercel, Heroku, AWS, Railway).
+This file outlines every specific change required to move the Waynix Landing Page from a local development environment to a cloud hosting provider (e.g., Vercel, Heroku, AWS, Railway).
 
 1. BACKEND API & SERVER (`server/index.js`)
 -------------------------------------------
@@ -61,7 +61,7 @@ Changes Required:
 3. DATABASE (`server/db.js`)
 ----------------------------
 Current State:
-- Uses `better-sqlite3` with a local file `tripazia.db`.
+- Uses `better-sqlite3` with a local file `waynix.db`.
 
 CRITICAL ISSUE:
 - Like the ticket images, this database file will be WIPED on every deployment in serverless/ephemeral environments.
