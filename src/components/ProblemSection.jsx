@@ -23,11 +23,34 @@ const problems = [
 const ProblemSection = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [progress, setProgress] = useState(0);
-    const duration = 9000; // 9 seconds per step
+    const [hasStarted, setHasStarted] = useState(false);
+    const duration = 12000; // 12 seconds per step
     const intervalTime = 100; // Update every 100ms
     const isTransitioning = useRef(false);
+    const sectionRef = useRef(null);
+
+    // Initial observer to start the sequence
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setHasStarted(true);
+                    observer.disconnect(); // Start only once
+                }
+            },
+            { threshold: 0.3 } // Start when 30% visible
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
+        if (!hasStarted) return; // Don't start until visible
+
         // Reset the transition lock when the step actually updates
         isTransitioning.current = false;
 
@@ -40,7 +63,7 @@ const ProblemSection = () => {
         }, intervalTime);
 
         return () => clearInterval(timer);
-    }, [activeStep]);
+    }, [activeStep, hasStarted]);
 
     // Handle step change when progress completes
     useEffect(() => {
@@ -56,10 +79,11 @@ const ProblemSection = () => {
     const handleStepClick = (index) => {
         setActiveStep(index);
         setProgress(0);
+        setHasStarted(true); // Ensure it starts if clicked before scroll triggers
     };
 
     return (
-        <section className="problem-section">
+        <section className="problem-section" id="problem" ref={sectionRef}>
             <div className="container">
                 <div className="problem-header">
                     <h2>Trip planning is more<br />complicated than it needs to be</h2>
@@ -72,8 +96,9 @@ const ProblemSection = () => {
                     <div className="problem-visual">
                         <img
                             src={imgProblem}
-                            alt="Visual representation of travel planning problems"
+                            alt="Travel planning across TikTok Reddit and Google Maps"
                             className="problem-image"
+                            loading="lazy"
                         />
                     </div>
 

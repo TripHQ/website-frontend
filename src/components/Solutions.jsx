@@ -29,12 +29,12 @@ const FeatureBlock = ({ title, description, reverse, visualText, videoSrc }) => 
 
 const Solutions = () => {
     return (
-        <section className="solution-section">
+        <section className="solution-section" id="solutions">
             <div className="container">
 
                 <FeatureBlock
                     title="From Your Preferences to a Perfect Itinerary."
-                    description="Tell us your preferences, play with combinations, and watch your city come to life."
+                    description="Tell us your preferences, play with combinations, and watch your plan come to life."
                     videoSrc={videoPreferences}
                 />
 

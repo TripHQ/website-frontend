@@ -32,7 +32,9 @@ const Header = () => {
         <header className="header">
             <div className="container header-content">
                 <div className="logo">
-                    <img src={logoBrand} alt="Tripazia" className="header-logo" />
+                    <a href="#home">
+                        <img src={logoBrand} alt="Waynix" className="header-logo" />
+                    </a>
                 </div>
 
                 <button
@@ -49,12 +51,8 @@ const Header = () => {
                     <ul className="nav-links nav-center">
                         <li>
                             <a
-                                href="/"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                                    setIsMenuOpen(false);
-                                }}
+                                href="#home"
+                                onClick={() => setIsMenuOpen(false)}
                             >
                                 Home
                             </a>
@@ -62,11 +60,7 @@ const Header = () => {
                         <li>
                             <a
                                 href="#join"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    document.getElementById('join').scrollIntoView({ behavior: 'smooth' });
-                                    setIsMenuOpen(false);
-                                }}
+                                onClick={() => setIsMenuOpen(false)}
                             >
                                 Contact
                             </a>
@@ -74,7 +68,7 @@ const Header = () => {
                     </ul>
 
                     <ul className="nav-links nav-right">
-                        <li className={`nav-btn-item ${showNavButtons ? 'nav-btn-visible' : ''}`}>
+                        {/* <li className={`nav-btn-item ${showNavButtons ? 'nav-btn-visible' : ''}`}>
                             <a
                                 href="https://calendly.com/team-waynix/30min"
                                 target="_blank"
@@ -84,7 +78,7 @@ const Header = () => {
                             >
                                 Get A Free Demo
                             </a>
-                        </li>
+                        </li> */}
                         <li className={`nav-btn-item ${showNavButtons ? 'nav-btn-visible' : ''}`}>
                             <Button onClick={() => {
                                 document.getElementById('join').scrollIntoView({ behavior: 'smooth' });

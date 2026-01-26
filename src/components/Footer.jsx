@@ -84,8 +84,8 @@ const Footer = () => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'My Tripazia Ticket',
-                    text: `I'm going to ${destination || 'my dream destination'}! Join me on Tripazia.`,
+                    title: 'My Waynix Ticket',
+                    text: `I'm going to ${destination || 'my dream destination'}! Join me on Waynix.`,
                     url: fullUrl
                 });
             } catch (err) {
@@ -156,12 +156,27 @@ const Footer = () => {
 
                 <WaitlistStatus count={count} joiners={joiners} />
 
-                <div className="footer-links">
-                    <a href="mailto:team.waynix@gmail.com" className="link-email">Email</a>
-                    <a href="#twitter" className="link-twitter">Twitter / X</a>
-                    <a href="#insta" className="link-insta">Instagram</a>
-                    <a href="#linkedin" className="link-linkedin">LinkedIn</a>
-                    <a href="#tiktok" className="link-tiktok">TikTok</a>
+                <WaitlistStatus count={count} joiners={joiners} />
+
+                <div className="footer-links social-links">
+                    <a href="mailto:team@waynix.ai" className="link-email">Email</a>
+                    <a href="https://x.com/waynixai" target="_blank" rel="noopener noreferrer" className="link-twitter">Twitter / X</a>
+                    <a href="https://www.instagram.com/waynix.ai/" target="_blank" rel="noopener noreferrer" className="link-insta">Instagram</a>
+                    <a href="https://www.youtube.com/@waynixai" target="_blank" rel="noopener noreferrer" className="link-youtube">YouTube</a>
+                    <a href="https://www.linkedin.com/company/waynix?trk=public_post_feed-actor-name" target="_blank" rel="noopener noreferrer" className="link-linkedin">LinkedIn</a>
+                    {/* <a href="#tiktok" className="link-tiktok">TikTok</a> */}
+                </div>
+
+                <div className="footer-divider"></div>
+
+                <div className="footer-bottom">
+                    <div className="copyright">
+                        &copy; {new Date().getFullYear()} Waynix. All rights reserved.
+                    </div>
+                    <div className="footer-links utility-links">
+                        <a href="/support" className="link-support">Support</a>
+                        <a href="/privacy-policy" className="link-privacy">Privacy</a>
+                    </div>
                 </div>
             </div>
 

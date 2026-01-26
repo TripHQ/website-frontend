@@ -119,7 +119,7 @@ select.form-input {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 9995;
     /* Ensure on top of everything */
     animation: fadeIn 0.3s ease;
 }
@@ -225,6 +225,77 @@ select.form-input {
     justify-content: center;
     gap: 2.5rem;
     margin-top: 3rem;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.social-links {
+    margin: 0 auto 2rem;
+    /* Centered with bottom margin */
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    /* Match form width */
+    padding: 0;
+    /* Align with container edges */
+}
+
+.footer-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 600px;
+    /* Match form width */
+    margin: 0 auto 1.5rem;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    /* Match form width */
+    margin: 0 auto;
+    padding: 0;
+    /* Align with container edges */
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.utility-links {
+    margin-top: 0;
+    gap: 2rem;
+    padding: 0;
+}
+
+.footer-links.utility-links a {
+    font-weight: 400;
+    /* Match copyright weight */
+    font-size: 0.9rem;
+    /* Match copyright size */
+    color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+    .footer-links {
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .utility-links {
+        justify-content: center;
+    }
 }
 
 .footer-links a {
@@ -263,4 +334,8 @@ select.form-input {
     -webkit-text-fill-color: transparent;
     color: transparent;
     /* Fallback */
+}
+
+.link-youtube:hover {
+    color: #FF0000;
 }

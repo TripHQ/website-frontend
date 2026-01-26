@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.waynix.ai/sitemap.xml

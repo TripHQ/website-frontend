@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10000;
     overflow: hidden;
 }
 
@@ -35,4 +35,23 @@ button,
 [role="button"] {
     cursor: none;
     /* Ensure system cursor doesn't reappear on interactive elements */
+}
+
+/* Hide custom cursor on mobile and touch devices */
+@media (max-width: 768px),
+(hover: none) {
+    .custom-cursor-container {
+        display: none;
+    }
+
+    body.custom-cursor-active,
+    body.custom-cursor-active * {
+        cursor: auto !important;
+    }
+
+    a,
+    button,
+    [role="button"] {
+        cursor: pointer;
+    }
 }

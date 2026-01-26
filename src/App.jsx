@@ -1,27 +1,22 @@
 import React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import ProblemSection from './components/ProblemSection';
-import TransitionSection from './components/TransitionSection';
-import BackgroundElements from './components/BackgroundElements';
-
-import Solutions from './components/Solutions';
-import Footer from './components/Footer';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import CustomCursor from './components/CustomCursor';
+import Support from './pages/Support';
 
 function App() {
   return (
-    <div className="app">
-      <CustomCursor />
-      <BackgroundElements />
-      <Header />
-      <Hero />
-      <ProblemSection />
-      <TransitionSection />
-      <Solutions />
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        <CustomCursor />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/support" element={<Support />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
