@@ -1,6 +1,6 @@
 import React from 'react';
 import './Solutions.css';
-import videoPreferences from '../assets/Main Asset_preferences.mp4';
+import videoPreferences from '../assets/Main Asset_Preferences.mp4';
 import videoAiAssistant from '../assets/Main_AI Assistant.mp4';
 import videoSeeAll from '../assets/Main_See AII.mp4';
 
