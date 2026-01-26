@@ -154,7 +154,7 @@ const Footer = () => {
                     </p>
                 </form>
 
-                <WaitlistStatus count={count} joiners={joiners} />
+
 
                 <WaitlistStatus count={count} joiners={joiners} />
 
